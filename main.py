@@ -42,7 +42,7 @@ def translation():
     elif which_way == "2":
         from_morse()
     else:
-        print('Please type only "1" or "2"')
+        print('Please type only "1" or "2".')
         translation()
 
 
