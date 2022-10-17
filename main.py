@@ -12,9 +12,9 @@ def translation():
         message = input("Write what you want to translate (only latin alphabet or numbers):\n").upper()
 
         translated_message = ""
-        for each in message:
+        for letter in message:
             try:
-                translated_message += MORSE_CODE_DICT[each] + " "
+                translated_message += MORSE_CODE_DICT[letter] + " "
             except KeyError:
                 print("Seems like you used unsupported characters. Please try again.")
                 to_morse()
@@ -26,9 +26,9 @@ def translation():
         message = re.split(" | / ", message)
 
         translated_message = []
-        for each in message:
+        for letter in message:
             try:
-                translated_message.append(list(MORSE_CODE_DICT.keys())[list(MORSE_CODE_DICT.values()).index(each)])
+                translated_message.append(list(MORSE_CODE_DICT.keys())[list(MORSE_CODE_DICT.values()).index(letter)])
             except ValueError:
                 print("Seems like you misspelled the code. Please try again.")
                 from_morse()
