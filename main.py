@@ -1,7 +1,7 @@
 from simple_term_menu import TerminalMenu
 from translator_functions import to_morse, from_morse
 
-# Configure main.py to emulate terminal in output console to show terminal menu properly
+# Configure main.py to emulate terminal in output console in order to show terminal menu properly
 
 # Terminal menu action codes
 TRANSLATE_TEXT_TO_MORSE_CODE = 0
