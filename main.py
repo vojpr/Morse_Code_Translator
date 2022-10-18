@@ -1,49 +1,22 @@
-import re
+from simple_term_menu import TerminalMenu
+from translator_functions import to_morse, from_morse
 
-MORSE_CODE_DICT = {'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....',
-                   'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.',
-                   'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--',
-                   'X': '-..-', 'Y': '-.--', 'Z': '--..', '1': '.----', '2': '..---', '3': '...--', '4': '....-',
-                   '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.', '0': '-----', " ": "/"}
+# Configure main.py to emulate terminal in output console to show terminal menu properly
 
+# Terminal menu action codes
+TRANSLATE_TEXT_TO_MORSE_CODE = 0
+TRANSLATE_MORSE_CODE_TO_TEXT = 1
+EXIT = 2
 
-def translation():
-    def to_morse():
-        message = input("Write what you want to translate (only latin alphabet or numbers):\n").upper()
+print("\033[1mWelcome to Morse code translator\033[0m\n")
+while True:
+    terminal_menu = TerminalMenu(["Translate text to morse code", "Translate morse code to text", "Exit"])
+    selected_action = terminal_menu.show()
 
-        translated_message = ""
-        for letter in message:
-            try:
-                translated_message += MORSE_CODE_DICT[letter] + " "
-            except KeyError:
-                print("Seems like you used unsupported characters. Please try again.")
-                to_morse()
-                return
-        print(f'Your message in Morse code is (" / " represents space):\n{translated_message[:-1]}')
-
-    def from_morse():
-        message = input('type in your Morse code (use " / " for space):\n')
-        message = re.split(" | / ", message)
-
-        translated_message = []
-        for letter in message:
-            try:
-                translated_message.append(list(MORSE_CODE_DICT.keys())[list(MORSE_CODE_DICT.values()).index(letter)])
-            except ValueError:
-                print("Seems like you misspelled the code. Please try again.")
-                from_morse()
-                return
-        translated_message = "".join(translated_message)
-        print(f'Your Morse code translates to:\n{translated_message}')
-
-    which_way = input('For translation TO Morse code type "1", for translation FROM Morse type "2":\n')
-    if which_way == "1":
+    if selected_action == TRANSLATE_TEXT_TO_MORSE_CODE:
         to_morse()
-    elif which_way == "2":
+    elif selected_action == TRANSLATE_MORSE_CODE_TO_TEXT:
         from_morse()
-    else:
-        print('Please type only "1" or "2".')
-        translation()
-
-
-translation()
+    elif selected_action == EXIT:
+        print("\033[1mGoodbye\033[0m")
+        quit()
