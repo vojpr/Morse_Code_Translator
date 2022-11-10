@@ -8,7 +8,7 @@ MORSE_CODE_DICT = {'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F
 
 
 def to_morse():
-    message = input("Type in the text you want to translate (only latin alphabet or numbers):\n").upper()
+    message = input("Type in the text you want to translate (only latin alphabet or numbers): \n").upper()
     translated_message = ""
     for letter in message:
         try:
